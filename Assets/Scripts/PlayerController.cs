@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private bool isWalking;
     private bool isGrounded;
+    private bool isTouchingWall;
+    private bool isWallSliding;
     private bool canJump;
 
     private Rigidbody2D rb;
@@ -21,8 +23,14 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 10.0f;
     public float jumpForce = 16.0f;
     public float groundCheckRadius;
+    public float wallCheckDistance;
+    public float wallSlideSpeed;
+    public float movementForceInAir;
+    public float airDragMultiplier = 0.95f;
+    public float variableJumpHeightMultiplier = 0.5f;
 
     public Transform groundCheck;
+    public Transform wallCheck;
 
     public LayerMask whatIsGroud;
 
@@ -39,6 +47,7 @@ public class PlayerController : MonoBehaviour
         CheckMovementDirection();
         UpdateAnimations();
         CheckIfCanJump();
+        CheckIfWallSliding();
     }
 
     private void FixedUpdate()
@@ -47,9 +56,23 @@ public class PlayerController : MonoBehaviour
         CheckSurroundings();
     }
 
+    private void CheckIfWallSliding()
+    {
+        if (isTouchingWall && !isGrounded && rb.velocity.y < 0)
+        {
+            isWallSliding = true;
+        }
+        else 
+        {
+            isWallSliding = false;
+        }
+    }
+
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGroud);
+
+        isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGroud);
     }
 
     private void CheckIfCanJump()
@@ -95,15 +118,21 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
+        anim.SetBool("isWallSliding", isWallSliding);
     }
 
     private void CheckInput() 
     {
         movementInputDirection = Input.GetAxisRaw("Horizontal"); //? raw is -1 or 0 or 1 ?
 
-        if(Input.GetButtonDown("Jump")) 
+        if (Input.GetButtonDown("Jump")) 
         {
             Jump();
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * variableJumpHeightMultiplier);
         }
     }
 
@@ -118,17 +147,47 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement() 
     {
-        rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+        if (isGrounded)
+        {
+            rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+        }
+        else if (!isGrounded && !isWallSliding && movementInputDirection != 0)
+        {
+            Vector2 forceToAdd = new Vector2(movementForceInAir * movementInputDirection, 0);
+            rb.AddForce(forceToAdd);
+
+            if (Mathf.Abs(rb.velocity.x) > movementSpeed)
+            {
+                rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+            }
+        }    
+        else if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * airDragMultiplier, rb.velocity.y);
+        }  
+
+        if (isWallSliding)
+        {
+            if (rb.velocity.y < -wallSlideSpeed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+            }
+        }
     }
 
     private void Flip() 
     {
-        isFacingRight = !isFacingRight;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
+        if (!isWallSliding) 
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(0.0f, 180.0f, 0.0f);
+        }       
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
     }
 }
