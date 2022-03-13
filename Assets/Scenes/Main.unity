@@ -56432,7 +56432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553285182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.9, y: 8.11, z: 0}
+  m_LocalPosition: {x: -12.9, y: 9.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1710305986}
@@ -56448,32 +56448,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1553285182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3e876f11699d7e48a236b8b40f46430, type: 3}
+  m_Script: {fileID: 11500000, guid: f2f065909f27ec3438019ec926bea22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheckDistance: 0.5
-  wallCheckDistance: 0.1
-  movementSpeed: 3
-  maxHealth: 30
-  knockbackDuration: 0.1
-  lastTouchDamageTime: 0
-  touchDamageCooldown: 0.2
-  touchDamage: 10
-  touchDamageWidth: 1.5
-  touchDamageHeight: 0.9
-  groundCheck: {fileID: 1786522737}
+  entityData: {fileID: 11400000, guid: 28a48abd71b4a6547947e638f68f1e41, type: 2}
   wallCheck: {fileID: 1040632293}
-  touchDamageCheck: {fileID: 1298920722}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  knockbackSpeed: {x: 10, y: 5}
-  hitParticle: {fileID: 7460761484997479496, guid: 22694eacd7091cc44a040ace6f32ae90, type: 3}
-  deathChunkParticle: {fileID: 2995697605677505926, guid: 76e03fdfcf35a0f4894925bb20ec3d6b, type: 3}
-  deathBloodParticle: {fileID: 6944033069591754313, guid: f0f5e5ff028f28c42ae7523b7ef4f8c4, type: 3}
+  ledgeCheck: {fileID: 1786522737}
+  idleStateData: {fileID: 11400000, guid: f6df961ec7c966f4f96e6d1a4fd8e91e, type: 2}
+  moveStateData: {fileID: 11400000, guid: 208520a8968e5ed49aeb0a1c11888477, type: 2}
 --- !u!1001 &1583654115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56633,7 +56615,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 8
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e728ec80cef0f8f40b4f06435c417f2d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -56678,7 +56660,7 @@ SpriteRenderer:
   m_SortingLayerID: 362262719
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6369384564468328029, guid: a1f211775917d9e45a8f26972808d421, type: 3}
+  m_Sprite: {fileID: 7942249098920568159, guid: b35abc5bd23fd014d8679b543f777b9e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -56743,7 +56725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786522737}
   m_Layer: 11
-  m_Name: GroundCheck
+  m_Name: LedgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
