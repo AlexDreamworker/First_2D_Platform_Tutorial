@@ -56407,6 +56407,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633f1b2cad8d90845b21586ade6b2cb9, type: 3}
+--- !u!1 &1541775754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1541775755}
+  m_Layer: 11
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1541775755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541775754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.019, y: -0.287, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1710305986}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1553285182
 GameObject:
   m_ObjectHideFlags: 0
@@ -56432,7 +56462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553285182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.43, y: 9.31, z: 0}
+  m_LocalPosition: {x: 12.761, y: 8.028, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1710305986}
@@ -56460,6 +56490,8 @@ MonoBehaviour:
   playerDetectedData: {fileID: 11400000, guid: 8590adb81042b314097d2ee658d41258, type: 2}
   chargeStateData: {fileID: 11400000, guid: 0d2a178aef542aa42a5d9813e96f753c, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 98a68f46d14b11747a8d29e0415f18e8, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: 21e9309f582e6394188cf89d307322d8, type: 2}
+  meleeAttackPosition: {fileID: 1541775755}
 --- !u!1001 &1583654115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56534,6 +56566,7 @@ GameObject:
   - component: {fileID: 1710305989}
   - component: {fileID: 1710305988}
   - component: {fileID: 1710305987}
+  - component: {fileID: 1710305991}
   m_Layer: 11
   m_Name: Alive
   m_TagString: Enemy
@@ -56556,6 +56589,7 @@ Transform:
   - {fileID: 1040632293}
   - {fileID: 1298920722}
   - {fileID: 2063931023}
+  - {fileID: 1541775755}
   m_Father: {fileID: 1553285183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -56676,6 +56710,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1710305991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710305985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c8b8a002efbe94c9a06e00bf2fda90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1750129993
 GameObject:
   m_ObjectHideFlags: 0
