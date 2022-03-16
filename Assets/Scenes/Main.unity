@@ -56344,6 +56344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombatDummy
       objectReference: {fileID: 0}
+    - target: {fileID: 171746591715545319, guid: 633f1b2cad8d90845b21586ade6b2cb9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633f1b2cad8d90845b21586ade6b2cb9, type: 3}
 --- !u!1001 &1465647228
@@ -56485,12 +56489,15 @@ MonoBehaviour:
   wallCheck: {fileID: 1040632293}
   ledgeCheck: {fileID: 1786522737}
   playerCheck: {fileID: 2063931023}
+  groundCheck: {fileID: 2001587305}
   idleStateData: {fileID: 11400000, guid: f6df961ec7c966f4f96e6d1a4fd8e91e, type: 2}
   moveStateData: {fileID: 11400000, guid: 208520a8968e5ed49aeb0a1c11888477, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 8590adb81042b314097d2ee658d41258, type: 2}
   chargeStateData: {fileID: 11400000, guid: 0d2a178aef542aa42a5d9813e96f753c, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 98a68f46d14b11747a8d29e0415f18e8, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 21e9309f582e6394188cf89d307322d8, type: 2}
+  stunStateData: {fileID: 11400000, guid: 5165e3f832471be40b838bb6deb721a9, type: 2}
+  deadStateData: {fileID: 11400000, guid: eb6e068d60d846c4694d5cab3d17816b, type: 2}
   meleeAttackPosition: {fileID: 1541775755}
 --- !u!1001 &1583654115
 PrefabInstance:
@@ -56590,6 +56597,7 @@ Transform:
   - {fileID: 1298920722}
   - {fileID: 2063931023}
   - {fileID: 1541775755}
+  - {fileID: 2001587305}
   m_Father: {fileID: 1553285183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -57456,6 +57464,36 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &2001587304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2001587305}
+  m_Layer: 11
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2001587305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001587304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.969, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1710305986}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2011584626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 171746591715545316, guid: 633f1b2cad8d90845b21586ade6b2cb9, type: 3}
@@ -57906,6 +57944,14 @@ PrefabInstance:
     - target: {fileID: 8280793657803850682, guid: 71d56e309c7f53c4396b9456352d97b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280793657803850683, guid: 71d56e309c7f53c4396b9456352d97b0, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280793657803850683, guid: 71d56e309c7f53c4396b9456352d97b0, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71d56e309c7f53c4396b9456352d97b0, type: 3}
