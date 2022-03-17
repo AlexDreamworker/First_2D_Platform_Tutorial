@@ -536,6 +536,11 @@ MonoBehaviour:
   moveStateData: {fileID: 11400000, guid: fbcc55e7050c4ff49905d2e5be8305d7, type: 2}
   idleStateData: {fileID: 11400000, guid: 594b777dfbd2a6f4facc39323b830f37, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 0b643604923461541abd1297f90f2549, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: f1e5ab70da5d1624fac5c663919e0ba9, type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: 3c5e86fe4375eea40be102954b9c0ea8, type: 2}
+  stunStateData: {fileID: 11400000, guid: eccaf45c1043dc14f9d2eda89ed35a0b, type: 2}
+  deadStateData: {fileID: 11400000, guid: c8c4aacc3c7110b44b3c78484adef5b4, type: 2}
+  meleeAttackPosition: {fileID: 1423071746}
 --- !u!1 &850388647
 GameObject:
   m_ObjectHideFlags: 0
@@ -48291,7 +48296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1040632293}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48321,7 +48326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1298920722}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: TouchDamageCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56522,6 +56527,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633f1b2cad8d90845b21586ade6b2cb9, type: 3}
+--- !u!1 &1423071745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423071746}
+  m_Layer: 0
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423071746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423071745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.751, y: -0.262, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2076789766}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1465647228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56592,7 +56627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1541775755}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: MeleeAttackPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56955,7 +56990,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1786522737}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: LedgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57645,7 +57680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2001587305}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57680,7 +57715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2063931023}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: PlayerCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57714,7 +57749,8 @@ GameObject:
   - component: {fileID: 2076789770}
   - component: {fileID: 2076789767}
   - component: {fileID: 2076789769}
-  m_Layer: 0
+  - component: {fileID: 2076789771}
+  m_Layer: 11
   m_Name: Alive
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -57736,6 +57772,7 @@ Transform:
   - {fileID: 1364930810}
   - {fileID: 1347041218}
   - {fileID: 522011379}
+  - {fileID: 1423071746}
   m_Father: {fileID: 757091455}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -57856,6 +57893,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &2076789771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076789765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c8b8a002efbe94c9a06e00bf2fda90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2085358580
 GameObject:
   m_ObjectHideFlags: 0

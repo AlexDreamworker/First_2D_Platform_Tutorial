@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E2_PlayerDetectedState : PlayerDetectedState
+public class E2_StunState : StunState
 {
     private Enemy2 enemy;
 
-    public E2_PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_PlayerDetected stateData, Enemy2 enemy) : base(entity, stateMachine, animBoolName, stateData)
+    public E2_StunState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_StunState stateData, Enemy2 enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -30,13 +30,16 @@ public class E2_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (performCloseRangeAction) 
+        if (isStunTimeOver) 
         {
-            stateMachine.ChangeState(enemy.meleeAttackState);
-        }
-        else if (!isPlayerInMaxAgroRange) 
-        {
-            stateMachine.ChangeState(enemy.lookForPlayerState);
+            if (isPlayerInMinAgroRange) 
+            {
+                stateMachine.ChangeState(enemy.playerDetectedState);
+            }
+            else 
+            {
+                stateMachine.ChangeState(enemy.lookForPlayerState);
+            }
         }
     }
 
