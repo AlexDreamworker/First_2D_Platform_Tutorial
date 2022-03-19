@@ -12,6 +12,7 @@ public class Enemy2 : Entity
     public E2_StunState stunState { get; private set; }
     public E2_DeadState deadState { get; private set; }
     public E2_DodgeState dodgeState { get; private set; }
+    public E2_RangedAttackState rangedAttackState { get; private set; }
 
     [SerializeField] private D_MoveState moveStateData;
     [SerializeField] private D_IdleState idleStateData;
@@ -21,8 +22,10 @@ public class Enemy2 : Entity
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
     [SerializeField] public D_DodgeState dodgeStateData;
+    [SerializeField] public D_RangedAttackState rangedAttackStateData;
 
     [SerializeField] private Transform meleeAttackPosition;
+    [SerializeField] private Transform rangedAttackPosition;
 
     public override void Start() 
     {
@@ -36,6 +39,7 @@ public class Enemy2 : Entity
         stunState = new E2_StunState(this, stateMachine, "stun", stunStateData, this);
         deadState = new E2_DeadState(this, stateMachine, "dead", deadStateData, this);
         dodgeState = new E2_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
+        rangedAttackState = new E2_RangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
 
         stateMachine.Initialize(moveState);
     }
@@ -51,6 +55,10 @@ public class Enemy2 : Entity
         else if (isStunned && stateMachine.currentState != stunState) 
         {
             stateMachine.ChangeState(stunState);
+        }
+        else if (CheckPlayerInMinAgroRange()) 
+        {
+            stateMachine.ChangeState(rangedAttackState);
         }
         else if (!CheckPlayerInMinAgroRange()) 
         {
