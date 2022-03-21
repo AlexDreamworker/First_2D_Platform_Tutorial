@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGroundedState : PlayerState
 {
     protected int xInput;
-    
+
     private bool JumpInput;
     private bool grabInput;
     private bool isGrounded;
@@ -45,7 +45,6 @@ public class PlayerGroundedState : PlayerState
 
         if (JumpInput && player.JumpState.CanJump()) 
         {
-            player.InputHandler.UseJumpInput();
             stateMachine.ChangeState(player.JumpState);
         }
         else if (!isGrounded) 
