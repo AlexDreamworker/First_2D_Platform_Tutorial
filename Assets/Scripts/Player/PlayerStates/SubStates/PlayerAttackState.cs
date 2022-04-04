@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerAttackState : PlayerAbilityState
 {
     private Weapon weapon;
@@ -11,7 +7,7 @@ public class PlayerAttackState : PlayerAbilityState
     private float velocityToSet;
     private bool setVelocity;
     private bool shouldCheckFlip;
-    
+
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
@@ -38,39 +34,39 @@ public class PlayerAttackState : PlayerAbilityState
 
         xInput = player.InputHandler.NormInputX;
 
-        if (shouldCheckFlip) 
+        if (shouldCheckFlip)
         {
-            player.CheckIfShouldFlip(xInput);
+            core.Movement.CheckIfShouldFlip(xInput);
         }
 
-        if (setVelocity) 
+        if (setVelocity)
         {
-            player.SetVelocityX(velocityToSet * player.FacingDirection);
+            core.Movement.SetVelocityX(velocityToSet * core.Movement.FacingDirection);
         }
     }
 
-    public void SetWeapon(Weapon weapon) 
+    public void SetWeapon(Weapon weapon)
     {
         this.weapon = weapon;
-        weapon.InitializeWeapon(this);
+        this.weapon.InitializeWeapon(this);
     }
 
-    public void SetPlayerVelocity(float velocity) 
+    public void SetPlayerVelocity(float velocity)
     {
-        player.SetVelocityX(velocity * player.FacingDirection);
+        core.Movement.SetVelocityX(velocity * core.Movement.FacingDirection);
 
         velocityToSet = velocity;
         setVelocity = true;
     }
 
-    public void SetFlipCheck(bool value) 
+    public void SetFlipCheck(bool value)
     {
         shouldCheckFlip = value;
-    } 
+    }
 
     #region Animation Triggers
 
-    public override void AnimationFinishTrigger() 
+    public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
 
@@ -78,4 +74,4 @@ public class PlayerAttackState : PlayerAbilityState
     }
 
     #endregion
-} 
+}
