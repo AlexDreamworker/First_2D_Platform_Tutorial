@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class AggressiveWeapon : Weapon
 {
@@ -12,7 +13,7 @@ public class AggressiveWeapon : Weapon
     {
         base.Awake();
 
-        if (weaponData.GetType() == typeof(SO_AggressiveWeaponData)) 
+        if (weaponData.GetType() == typeof(SO_AggressiveWeaponData)) //? if (weaponData is SO_AggressiveWeaponData)...
         {
             aggressiveWeaponData = (SO_AggressiveWeaponData)weaponData;
         }
@@ -33,7 +34,7 @@ public class AggressiveWeapon : Weapon
     {
         WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[attackCounter];
         
-        foreach (IDamageable item in detectedDamageable)
+        foreach (IDamageable item in detectedDamageable.ToList())
         {
             item.Damage(details.damageAmount);
         }
